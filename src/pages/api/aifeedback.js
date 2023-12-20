@@ -1,5 +1,6 @@
 import OpenAI from "openai";
-const openai = new OpenAI({ apiKey: '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' });
+const ai_key = process.env.ai_key
+const openai = new OpenAI({ apiKey: ai_key });
 
 async function talk_to_AI() {
     let question = 'Hello';
