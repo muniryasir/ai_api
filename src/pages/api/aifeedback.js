@@ -1,4 +1,6 @@
 import OpenAI from "openai";
+import {useRouter} from "next/router";
+
 const ai_key = process.env.AI_KEY
 const openai = new OpenAI({ apiKey: ai_key });
 
@@ -22,14 +24,20 @@ async function talk_to_AI(query) {
 export default async function  handler(req, res) {
   if (req.method == 'POST') {
     // console.log(req.body)
-    const question = req.body.question;
-    let responseAI = await talk_to_AI(question);
-    res.status(200).json({AI_Answer: responseAI.answer.message.content});
-
-  } else if(req.method == 'GET') {
-    console.log("key "+ai_key)
+    // const question = req.body.question;
+    // let responseAI = await talk_to_AI(question);
+    // res.status(200).json({AI_Answer: responseAI.answer.message.content});
 
     res.status(200).json({ text: 'API is running' });
+
+
+  } else if(req.method == 'GET') {
+
+    
+    const question = req.query.question;
+    let responseAI = await talk_to_AI(question);
+    res.status(200).json({AI_Answer: responseAI.answer.message.content});
+    // res.status(200).json();
 
   }
     
