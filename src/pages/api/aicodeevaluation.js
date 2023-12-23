@@ -31,7 +31,7 @@ export default async function  handler(req, res) {
     // res.setHeader('Content-Type', 'application/json');
     // res.setHeader('Cache-Control', 'max-age=180000');
     // res.end(JSON.stringify(req.body));
-    return res.status(200).json( req.body);
+    return res.status(200).json( {answer: 'testing works'});
     // return res.status(405).send('Method not allowed.');
 
 
