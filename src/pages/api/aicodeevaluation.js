@@ -35,17 +35,24 @@ export default async function  handler(req, res) {
     // return res.status(405).send('Method not allowed.');
 
 
+  } else if(req.method == 'OPTIONS') {
+
+    console.log('we are here')
+    return res.status('OK')
+
   } else if(req.method == 'GET') {
 
-    let x = encodeURIComponent(`x=int(input('enter a number:')) y = x*x print("square of "+str(x)+" is "+str(y))`)
-    let code = `x=int(input('enter a number:')) y = x*x print("square of "+str(x)+" is "+str(y))`
-    let question = `For the python code given with the code tags evaluate and provide a two liner feedback <code>${decodeURIComponent(x)}</code>`;
+    // let x = encodeURIComponent(`x=int(input('enter a number:')) y = x*x print("square of "+str(x)+" is "+str(y))`)
+    // let code = `x=int(input('enter a number:')) y = x*x print("square of "+str(x)+" is "+str(y))`
+    
     // const question = req.query.question;
-    // let responseAI = await evaluateCode(question);
+    // 
     // res.status(200).json({AI_Answer: responseAI.answer.message.content});
     // res.status(200).json();
+    let code = JSON.parse(req.query.question)
+    let question = `For the python code given with the code tags evaluate and provide a two liner feedback <code>${code.code}</code>`;
+    let responseAI = await evaluateCode(question);
     console.log('called')
-    return res.status(200).json({AI_Answer: question});
-  }
+    res.status(200).json({AI_Answer: responseAI.answer.message.content});  }
     
   }
