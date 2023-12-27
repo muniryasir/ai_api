@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import {useRouter} from "next/router";
 
-const ai_key = process.env.AI_KEY_PB
+const ai_key = process.env.AI_KEY
 const openai = new OpenAI({ apiKey: ai_key });
 
 async function talk_to_AI(query) {
