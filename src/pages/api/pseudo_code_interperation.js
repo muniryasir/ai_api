@@ -45,10 +45,23 @@ export default async function  handler(req, res) {
     
     const question = req.query.question;
     // let ques = `consider the following code ${code} GCSE OCR ERL Exam Reference Language for Algorithims, is it syntically correct and what is its purpose also please provide eqvalent python code within code tags`
-    let ques = `consider the following pseudocode ${code} provide equvalent python code`
+    let ques = `consider the following pseudocode ${question} provide equvalent python code`
     // let ques = 'what year it is?'
-    let responseAI = await talk_to_AI(ques);
-    res.status(200).json({AI_Answer: responseAI.answer.message.content});
+     let responseAI = await talk_to_AI(ques);
+    let pythoncode = responseAI.answer.message.content
+    let mySubString = pythoncode.substring(
+      pythoncode.indexOf("```python") + 1, 
+      pythoncode.lastIndexOf("```")
+  );
+  let response = mySubString.split('``python').pop();
+  console.log(response);
+  if (response == ""){
+    response = 'invalid';
+  } else {
+    
+  }
+   
+    res.status(200).json({AI_Answer: response});
     // res.status(200).json();
 
   }
