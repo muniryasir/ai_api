@@ -45,7 +45,7 @@ export default async function  handler(req, res) {
     
     const question = req.query.question;
     // let ques = `consider the following code ${code} GCSE OCR ERL Exam Reference Language for Algorithims, is it syntically correct and what is its purpose also please provide eqvalent python code within code tags`
-    let ques = `consider the following pseudocode ${question} provide equvalent python code within code tags`
+    let ques = `consider the following pseudocode ${question}, if its valid provide equvalent python code within code tags else return invalid with reasons`
     // let ques = 'what year it is?'
      let responseAI = await talk_to_AI(ques);
     let pythoncode = responseAI.answer.message.content

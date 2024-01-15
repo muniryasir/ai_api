@@ -59,7 +59,7 @@ endif
     
     const question = req.query.question;
     // let ques = `consider the following code ${code} GCSE OCR ERL Exam Reference Language for Algorithims, is it syntically correct and evaulate it qualitativly, also provide eqvalent python code. Return answer as a JSON object with keys code, feedback and python`
-    let ques = `consider the following code ${question} written in GCSE OCR ERL Exam Reference Language for Algorithims, to equvlent python code `
+    let ques = `consider the following code ${question} written in GCSE OCR ERL Exam Reference Language for Algorithims, if valid return equvlent python code otherwise return invalid with reasons`
     let responseAI = await talk_to_AI(ques);
     let pythoncode = responseAI.answer.message.content
     let mySubString = pythoncode.substring(
