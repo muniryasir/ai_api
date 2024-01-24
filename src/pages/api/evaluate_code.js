@@ -45,11 +45,11 @@ export default async function  handler(req, res) {
   } else if(req.method == 'GET') {
 
     let query = req.query.question
-    let x = `{"code":"2+3"}`
-    let y = JSON.parse(x)    
+    // let x = `{"code":"2+3"}`
+    // let y = JSON.parse(x)    
 console.log(query)
     let recievedRequest = JSON.parse(query)
-    let code = recievedRequest.code;
+    let code = recievedRequest.code.replace('plus_plus', "+");
     let mode = recievedRequest.mode;
     let test = recievedRequest.test;
     console.log("code "+code)
